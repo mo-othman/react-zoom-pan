@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FocusEventHandler} from 'react';
 import RubberBand from './rubberBand/RubberBand';
 import Consts, { ObjectTypes } from './helpers/ViewPortConst';
 import SpacialHelper from './helpers/SpacialHelper';
@@ -18,6 +18,8 @@ export interface IZoomPanProps {
   onSelectItem?: Function;
   onChange?: Function;
   onAddItem?: Function;
+  onFocus?: FocusEventHandler<HTMLDivElement>;
+  onBlur?:  FocusEventHandler<HTMLDivElement>;
 }
 
 export interface IZoomPanState {
@@ -347,6 +349,8 @@ export class ZoomPan extends React.Component<IZoomPanProps, IZoomPanState> {
         onDragOver={this.onDragOver}
         onDrop={this.onDrop}
         tabIndex={0}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
       >
         <div
           id="viewport"
